@@ -36,7 +36,6 @@ catkin_package(
 
 # set(OpenCV_DIR "/home/orin/opencv-4.5.2/build")
 find_package(OpenCV 4.5 REQUIRED NO_MODULE PATHS /usr/local NO_DEFAULT_PATH)
-find_package(realsense2 REQUIRED)
 find_package(GLUT REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(OpenGL REQUIRED)
@@ -67,7 +66,6 @@ include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/include
         ${CMAKE_CURRENT_SOURCE_DIR}/include/junbot_camera
 )
-include_directories(${realsense2_INCLUDE_DIR})
 
 link_directories(${GLEW_LIBRARY_DIRS})
 link_directories(${GLUT_LIBRARY_DIRS})
@@ -89,7 +87,6 @@ FILE(GLOB_RECURSE SRC_FILES
         ${CMAKE_CURRENT_SOURCE_DIR}/yolov5_detection.cpp
         )
 FILE(GLOB_RECURSE HDR_FILES
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/D455/*.h*
         ${CMAKE_CURRENT_SOURCE_DIR}/yolov5_detection.h
         )
 
@@ -111,55 +108,18 @@ target_link_libraries(yolov5-detector
                         -lopencv_dnn
         )
 
-add_executable(${PROJECT_NAME}_segmentation test/segmentation_node.cpp)
-add_executable(${PROJECT_NAME}_rgp2depth test/bbRGB2Depth.cpp)
-add_executable(${PROJECT_NAME}_mission_control test/cancel_mission.cpp)
-add_executable(${PROJECT_NAME}_detector test/detector_test.cpp)
-add_executable(${PROJECT_NAME}_marker test/marker_detection.cpp)
-
-target_link_libraries(${PROJECT_NAME}_segmentation
-   ${realsense2_LIBRARY}
-   ${Boost_LIBRARIES}
-   ${catkin_LIBRARIES}
-   ${OpenCV_LIBRARIES}
-   yolov5-detector
-)
-
-target_link_libraries(${PROJECT_NAME}_rgp2depth
-   ${realsense2_LIBRARY}
-   ${Boost_LIBRARIES}
-   ${catkin_LIBRARIES}
-   ${OpenCV_LIBRARIES}
-   yolov5-detector
-)
-
-target_link_libraries(${PROJECT_NAME}_mission_control
-   ${realsense2_LIBRARY}
-   ${Boost_LIBRARIES}
-   ${catkin_LIBRARIES}
-   ${OpenCV_LIBRARIES}
-   yolov5-detector
-)
+add_executable(${PROJECT_NAME}_detector test/junbot_detector.cpp)
 
 target_link_libraries(${PROJECT_NAME}_detector
-        ${realsense2_LIBRARY}
-        ${Boost_LIBRARIES}
-        ${catkin_LIBRARIES}
-        ${OpenCV_LIBRARIES}
-        yolov5-detector
+   ${realsense2_LIBRARY}
+   ${Boost_LIBRARIES}
+   ${catkin_LIBRARIES}
+   ${OpenCV_LIBRARIES}
+   yolov5-detector
 )
 
-target_link_libraries(${PROJECT_NAME}_marker
-        ${realsense2_LIBRARY}
-        ${OpenCV_LIBRARIES}
-        ${catkin_LIBRARIES})
 
-
-install(TARGETS ${PROJECT_NAME}_segmentation
-  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-
-install(TARGETS ${PROJECT_NAME}_mission_control
+install(TARGETS ${PROJECT_NAME}_detector
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
@@ -167,16 +127,6 @@ install(TARGETS yolov5-detector
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
-
-install(TARGETS ${PROJECT_NAME}_rgp2depth
-        RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-
-install(TARGETS ${PROJECT_NAME}_marker
-        ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-        LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-        RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
 
 catkin_install_python(PROGRAMS scripts/set_cams_transforms.py
                       DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
