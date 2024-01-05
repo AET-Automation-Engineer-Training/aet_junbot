@@ -7,11 +7,11 @@
     <param name="tf_prefix" value="$(arg multi_robot_name)"/>
   </node>
 
-  <include file="$(find zed_wrapper)/launch/zedm.launch"/>
+  <!-- <include file="$(find zed_wrapper)/launch/zedm.launch"/> -->
 
-  <include file="$(find junbot_bringup)/launch/sick_tim_781.launch"/>
+  <!-- <include file="$(find junbot_bringup)/launch/sick_tim_781.launch"/> -->
 
   <node pkg="junbot_bringup" type="junbot_diagnostics" name="junbot_diagnostics" output="screen"/>
 
-  <node pkg="junbot_gui" type="junbot_gui" name="junbot_gui" output="screen"/>?\
+  <!-- <node pkg="junbot_gui" type="junbot_gui" name="junbot_gui" output="screen"/>?\ -->
 </launch>
