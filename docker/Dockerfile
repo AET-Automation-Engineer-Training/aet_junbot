@@ -3,6 +3,7 @@ FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu20.04
 # Install basic packages
 RUN apt-get update
 RUN apt-get install -y wget vim git
+RUN apt install nlohmann-json3-dev
  
 # Minimal setup
 RUN apt-get update \
