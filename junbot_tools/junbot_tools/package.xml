@@ -9,6 +9,6 @@
   <license>BSD</license>
   <maintainer email="00sao00ios00@gmail.com">Life Zero</maintainer>
   <buildtool_depend>catkin</buildtool_depend>
-  <exec_depend>junbot_camera</exec_depend>
+  <!-- <exec_depend>junbot_camera</exec_depend> -->
   <export><metapackage/></export>
 </package>
