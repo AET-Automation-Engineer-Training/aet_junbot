@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>junbot_tools</name>
+  <version>1.2.5</version>
+  <description>
+    ROS packages for the Junbot (this based on Turtlebot3) (meta package)
+  </description>
+  <license>Apache 2.0</license>
+  <license>BSD</license>
+  <maintainer email="00sao00ios00@gmail.com">Life Zero</maintainer>
+  <buildtool_depend>catkin</buildtool_depend>
+  <!-- <exec_depend>junbot_camera</exec_depend> -->
+  <export><metapackage/></export>
+</package>
