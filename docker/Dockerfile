@@ -41,7 +41,7 @@ RUN apt-get clean && \
         libtiff-dev libtiff5-dev libv4l-dev libx11-dev libxext6 libxine2-dev \
         libxrender-dev libxvidcore-dev libx264-dev libgtkglext1 libgtkglext1-dev \
         libgstreamer-plugins-base1.0-dev libglx-dev \ 
-        libgstreamer1.0-dev libopenexr-dev \
+        libgstreamer1.0-dev libopenexr-dev libqt5svg5-dev qt5-default \
         openexr \
         pkg-config \
         qv4l2 \
@@ -66,18 +66,7 @@ WORKDIR /opencv/opencv/build
 
 RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
-    -D OPENCV_EXTRA_MODULES_PATH=/opencv/opencv_contrib/modules \
-    -D WITH_CUDA=ON \
-    -D WITH_CUDNN=ON \
-    -D WITH_CUBLAS=ON \
-    -D WITH_TBB=ON \
-    -D WITH_V4L=ON \
-    -D WITH_QT=ON \
-    -D WITH_OPENGL=ON \
-    -D WITH_GSTREAMER=ON \
-    -D WITH_GTK=ON \
-    -D WITH_OPENMP=ON \
-    -D PYTHON_EXECUTABLE=/usr/local/bin/python ..
+    -D OPENCV_EXTRA_MODULES_PATH=/opencv/opencv_contrib/modules ..
 
 RUN make -j$(nproc)
 RUN make install
