@@ -119,15 +119,27 @@ RUN apt update && \
         ros-noetic-interactive-markers
 
 # ==================================================================
-# Create catkin workspace
-# RUN mkdir -p /catkin_ws/src
-# WORKDIR /catkin_ws
-# RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; catkin_make'
-# RUN echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
+# Setup GUI dependencies
 
-# ==================================================================
-# Install Cartographer
-# WORKDIR /catkin_ws/src
-# RUN git clone 
+WORKDIR /${USER}
+
+RUN git clone git://code.qt.io/qt/qtmqtt.git
+RUN cd qtmqtt
+RUN git checkout v5.12.5
+RUN apt-get -y install qtbase5-private-dev
+RUN qmake 
+RUN make 
+RUN make install
+
+WORKDIR /
+RUN apt-get install -y ros-noetic-move-base-msgs
+RUN apt-get install -y python3-catkin-tools
+RUN apt-get install -y qtmultimedia5-dev
+
+
+
+
+
+
 
 
