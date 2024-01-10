@@ -24,7 +24,7 @@ add_message_files(
 )
 
 generate_dynamic_reconfigure_options(
-  cfg/gazebo_ros_mecanum_pid.cfg
+  cfg/gazebo_mecanum_plugins_pid.cfg
 )
 
 generate_messages(
@@ -68,7 +68,30 @@ add_executable(gazebo_mecanum_plugin_pid src/gazebo_ros_mecanum_pid_param.cpp)
 target_link_libraries(gazebo_mecanum_plugin_pid ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES} ${Boost_LIBRARIES})
 add_dependencies(gazebo_mecanum_plugin_pid gazebo_mecanum_plugins_gencfg gazebo_mecanum_plugins_generate_messages_cpp)
 
-install(TARGETS
-   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+install(TARGETS gazebo_ros_mecanum_drive
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
+
+install(TARGETS gazebo_ros_mecanum_pid_drive
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(TARGETS gazebo_mecanum_plugin_pid
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+  FILES_MATCHING PATTERN "*.h"
+)
+
+install(DIRECTORY launch/
+    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
+)
+
+install(DIRECTORY cfg/
+    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/cfg
+)
+
+
+
