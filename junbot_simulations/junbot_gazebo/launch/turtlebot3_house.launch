@@ -15,4 +15,4 @@
 
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(find zm_robot_description)/urdf/zm_robot.urdf.xacro" />
   <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model zm_robot -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
-</launch>zz
+</launch>
