@@ -1,3 +1,0 @@
-<launch>
-  <include file="$(find zed_wrapper)/launch/zedm.launch"/>
-</launch>

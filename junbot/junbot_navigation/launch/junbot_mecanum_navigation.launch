@@ -12,7 +12,7 @@
     <param name="destination_frame" value="sick_lidar0"/>
     <param name="cloud_destination_topic" value="/junbot_clound"/>
     <param name="scan_destination_topic" value="/junbot_scan"/>
-    <param name="laserscan_topics" value ="/sick_s30b/laser/scan0 /sick_s30b/laser/scan1" /> <!-- LIST OF THE LASER SCAN TOPICS TO SUBSCRIBE -->
+    <param name="laserscan_topics" value ="/sick_s30b/laser/scan0" /> <!-- LIST OF THE LASER SCAN TOPICS TO SUBSCRIBE -->
     <param name="angle_min" value="-3.1415926"/>
     <param name="angle_max" value="3.1415926"/>
     <param name="angle_increment" value="0.0058"/>
