@@ -41,7 +41,7 @@ catkin_package(
 ################################################################################
 catkin_install_python(PROGRAMS
   nodes/junbot_teleop_key
-  nodes/zm_robot_teleope_key.py
+  nodes/junbot_teleope_key.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

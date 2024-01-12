@@ -1,8 +1,8 @@
 <launch>
   <node pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen">
     <param name="destination_frame" value="sick_lidar0"/>
-    <param name="cloud_destination_topic" value="/zm_robot_clound"/>
-    <param name="scan_destination_topic" value="/zm_robot_scan"/>
+    <param name="cloud_destination_topic" value="/junbot_clound"/>
+    <param name="scan_destination_topic" value="/junbot_scan"/>
     <param name="laserscan_topics" value ="/sick_s30b/laser/scan0 /sick_s30b/laser/scan1" /> <!-- LIST OF THE LASER SCAN TOPICS TO SUBSCRIBE -->
     <param name="angle_min" value="-3.1415926"/>
     <param name="angle_max" value="3.1415926"/>
@@ -14,7 +14,7 @@
   
 
   <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
-    <remap from="scan" to="zm_robot_scan"/>
+    <remap from="scan" to="junbot_scan"/>
     <param name="map_update_interval" value="5.0"/>
     <param name="maxUrange" value="16.0"/>
     <param name="sigma" value="0.05"/>
@@ -46,7 +46,7 @@
   </node>
 
   <param name="robot_description"
-    command="$(find xacro)/xacro --inorder '$(find zm_robot_description)/urdf/zm_robot.urdf.xacro'" />
+    command="$(find xacro)/xacro --inorder '$(find junbot_description)/urdf/junbot_mecanum.urdf.xacro'" />
     
   <!-- send fake joint values -->
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
