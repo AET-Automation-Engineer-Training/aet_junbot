@@ -44,6 +44,12 @@
     <param name="lasamplestep" value="0.005"/>
   </node>
 
+    <!-- rviz -->
+  <!-- <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find junbot_slam)/rviz/junbot_cartographer.rviz"/>
+  </group> -->
+
   <!-- <node pkg="tf" type="static_transform_publisher" name="wheel_1_to_map_broadcaster"
       args="-0.25 0.3 0 -1.5708 0.0 0.0 base_link wheel_1  10"/>
 
