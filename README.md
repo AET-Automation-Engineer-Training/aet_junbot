@@ -14,12 +14,25 @@
 - Obstacle avoidance
 - Object detection
 
+
+## Docker
+
+```bash
+cd docker
+docker build -t aet_junbot .
+
+# run docker
+./start_docker.sh
+
+# stop docker
+./stop_docker.sh
+```
+
 ## Related project
 
 - [Firmware](https://github.com/AET-Automation-Engineer-Training/aet_open_hw/tree/main)
 - [GUI](https://github.com/AET-Automation-Engineer-Training/aet_junbot_gui)
 - [Mobile App](https://github.com/lacie-life/junbot_app)
-
 
 
 
