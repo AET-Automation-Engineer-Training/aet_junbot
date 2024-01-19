@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker commit $(docker ps -l -q) aet_junbot:lastest
+docker commit $(docker ps -l -q) aet_junbot:latest
 
 
 
