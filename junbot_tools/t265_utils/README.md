@@ -12,7 +12,7 @@ This ROS node can perform the following operations:
 
 ## Make it work
 - Launch the t265 ros driver, be sure to publish images
-- roslaunch t265_depth t265_depth.launch
+- roslaunch t265_utils t265_depth.launch
 
 # Parameters
 - input_topic_left: topic name of the left camera

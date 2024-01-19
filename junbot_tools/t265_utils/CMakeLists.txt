@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(t265_depth)
+project(t265_utils)
 
 add_compile_options(-std=c++14)
 

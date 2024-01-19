@@ -100,8 +100,8 @@ int main( int argc, char** argv )
     ros::NodeHandle n;
 
     // TODO: Recheck ZED Mini Image topic
-    ros::Subscriber subLeftRectified = n.subscribe("image", 10, imageLeftRectifiedCallback);
-    ros::Subscriber subDepth = n.subscribe("depth", 10, depthCallback);
+    ros::Subscriber subLeftRectified = n.subscribe("/camera/fisheye1/image_raw/rectified", 10, imageLeftRectifiedCallback);
+    ros::Subscriber subDepth = n.subscribe("/camera/fisheye1/image_raw/depth", 10, depthCallback);
 
     ros::spin();
 
