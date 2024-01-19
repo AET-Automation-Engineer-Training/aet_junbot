@@ -14,6 +14,19 @@
 - Obstacle advoidance
 - Object detection
 
+## Docker
+
+```bash
+cd docker
+docker build -t aet_junbot .
+
+# run docker
+./start_docker.sh
+
+# stop docker
+./stop_docker.sh
+```
+
 
 
 
