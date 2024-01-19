@@ -6,6 +6,15 @@
 - RPLidar A2
 - T265
 
+## Software
+
+- Ubuntu 20.04
+- ROS Noetic
+- TensorRT 8.5.1
+- cuDNN 8.6.0
+- CUDA 11.8
+- OpenCV 4.8
+
 ## Feature 
 
 - 4-wheel mecanum kinematic
