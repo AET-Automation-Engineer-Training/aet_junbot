@@ -80,6 +80,7 @@ namespace t265_depth
         ros::Publisher pub_camera_info_left_;
         ros::Publisher pub_camera_info_right_;
         ros::Publisher pub_pointcloud_;
+        ros::Publisher pub_depth_;
 
         std::string input_topic_left_;
         std::string input_topic_right_;

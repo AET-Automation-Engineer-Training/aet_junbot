@@ -31,6 +31,7 @@ namespace t265_depth
                 "Unrecognized prefilter type, choices are 'xsobel' or "
                 "'normalized_response'");
         }
+
         // general stereo parameters
         private_node.param("pre_filter_cap", pre_filter_cap_, kPreFilterCap);
         private_node.param("sad_window_size", sad_window_size_, kSADWindowSize);
@@ -40,34 +41,40 @@ namespace t265_depth
         private_node.param("speckle_range", speckle_range_, kSpeckleRange);
         private_node.param("speckle_window_size", speckle_window_size_, kSpeckleWindowSize);
         private_node.param("sad_window_size", sad_window_size_, kSADWindowSize);
+
         // bm parameters
         private_node.param("texture_threshold", texture_threshold_, kTextureThreshold);
         private_node.param("pre_filter_size", pre_filter_size_, kPreFilterSize);
+        
         // sgbm parameters
         private_node.param("use_sgbm", use_sgbm_, kUseSGBM);
         private_node.param("sgbm_mode", sgbm_mode_, kSGBMMode);
         private_node.param("p1", p1_, kP1);
         private_node.param("p2", p2_, kP2);
         private_node.param("disp_12_max_diff", disp_12_max_diff_, kDisp12MaxDiff);
-
         private_node.param("do_median_blur", do_median_blur_, kDoMedianBlur);
-
         private_node.param("enable_dyn_reconf", enable_dyn_reconf_, kEnableDynReconf);
 
         initializeRectificationMapping(param_file_path_);
+
         // Publishers
         pub_img_left_rect_ = it_.advertise(input_topic_left_ + "/rectified", 10);
         pub_img_right_rect_ = it_.advertise(input_topic_right_ + "/rectified", 10);
         pub_camera_info_left_ = node.advertise<sensor_msgs::CameraInfo>(input_topic_left_ + "/rectified" + "/info", 10);
         pub_camera_info_right_ = node.advertise<sensor_msgs::CameraInfo>(input_topic_right_ + "/rectified" + "/info", 10);
         pub_disparity_ = it_.advertise("/disparity", 10);
-        pub_pointcloud_ = node.advertise<sensor_msgs::PointCloud2>("/points2", 10);
+        pub_pointcloud_ = node.advertise<sensor_msgs::PointCloud2>(input_topic_left_ + "/points2", 10);
+        pub_depth_ = node.advertise<sensor_msgs::Image>(input_topic_left_ + "/depth", 10);
+
         // Subscriber - sync policy
         message_filters::Subscriber<sensor_msgs::Image> *image_sub_L_ptr;
         message_filters::Subscriber<sensor_msgs::Image> *image_sub_R_ptr;
+
         Sync *sync_ptr;
+
         image_sub_L_ptr = new message_filters::Subscriber<sensor_msgs::Image>();
         image_sub_R_ptr = new message_filters::Subscriber<sensor_msgs::Image>();
+
         image_sub_L_ptr->subscribe(private_node, input_topic_left_, 1);
         image_sub_R_ptr->subscribe(private_node, input_topic_right_, 1);
 
@@ -94,7 +101,9 @@ namespace t265_depth
         sensor_msgs::ImagePtr out_img_msg_right;
         image_left_ = cv_bridge::toCvCopy(image_msg_left, "mono8")->image;
         image_right_ = cv_bridge::toCvCopy(image_msg_right, "mono8")->image;
+
         std_msgs::Header header_out = image_msg_left->header;
+
         if (scale_ < 1)
         {
             resize(image_left_, image_left_, Size(image_left_.cols * scale_, image_left_.rows * scale_));
@@ -116,15 +125,17 @@ namespace t265_depth
         out_img_msg_left->header.frame_id = output_frame_id_;
         output_camera_info_left_.header = image_msg_left->header;
         output_camera_info_left_.header.frame_id = output_frame_id_;
+
         //pub left
         if (pub_img_left_rect_.getNumSubscribers() > 0)
         {
-        pub_img_left_rect_.publish(out_img_msg_left);
+            pub_img_left_rect_.publish(out_img_msg_left);
         }
         if (pub_camera_info_left_.getNumSubscribers() > 0)
         {
-        pub_camera_info_left_.publish(output_camera_info_left_);
+            pub_camera_info_left_.publish(output_camera_info_left_);
         }
+
         // right
         out_img_msg_right->header = image_msg_right->header;
         out_img_msg_right->header.frame_id = output_frame_id_;
@@ -133,11 +144,11 @@ namespace t265_depth
         //pub right
         if (pub_img_right_rect_.getNumSubscribers() > 0)
         {
-        pub_img_right_rect_.publish(out_img_msg_right);
+            pub_img_right_rect_.publish(out_img_msg_right);
         }
         if (pub_camera_info_right_.getNumSubscribers() > 0)
         {
-        pub_camera_info_right_.publish(output_camera_info_right_);
+            pub_camera_info_right_.publish(output_camera_info_right_);
         }
     }
 
@@ -346,24 +357,55 @@ namespace t265_depth
 
             if (pub_disparity_.getNumSubscribers() > 0)
             {
-            cv::normalize(left_disp, left_disp8u, 0, 255, cv::NORM_MINMAX, CV_8U);
-            // publish disparity image
-            sensor_msgs::ImagePtr out_disparity_msg;
-            out_disparity_msg = cv_bridge::CvImage(std_msgs::Header(), "mono8", left_disp8u).toImageMsg();
-            pub_disparity_.publish(out_disparity_msg);
+                cv::normalize(left_disp, left_disp8u, 0, 255, cv::NORM_MINMAX, CV_8U);
+                // publish disparity image
+                sensor_msgs::ImagePtr out_disparity_msg;
+                out_disparity_msg = cv_bridge::CvImage(std_msgs::Header(), "mono8", left_disp8u).toImageMsg();
+                pub_disparity_.publish(out_disparity_msg);
             }
+
             // build pointcloud
             sensor_msgs::PointCloud2 pointcloud_msg;
             computePointcloud(left_disp, pointcloud_msg);
-            // publish pointcloud
-            pointcloud_msg.header.stamp = header_msg.stamp;
-            pointcloud_msg.header.frame_id = output_frame_id_;
 
-            if (pub_pointcloud_.getNumSubscribers() > 0)
+            // Convert pointcloud to depth image
+            cv::Mat depth_image = cv::Mat::zeros(undist_image_left_.rows, undist_image_left_.cols, CV_32FC1);
+            sensor_msgs::PointCloud2Iterator<float> iter_z(pointcloud_msg, "z");
+            for (int y = 0; y < depth_image.rows; ++y)
             {
-            pub_pointcloud_.publish(pointcloud_msg);
+                for (int x = 0; x < depth_image.cols; ++x)
+                {
+                    depth_image.at<float>(y, x) = *iter_z;
+                    ++iter_z;
+                }
             }
+            // Convert depth image to std_msgs::Image
+            cv_bridge::CvImagePtr cv_ptr(new cv_bridge::CvImage);
+            cv_ptr->image = depth_image;
+            cv_ptr->encoding = "32FC1";
+            // cv_ptr = cv_bridge::toCvCopy(cv_bridge::CvImage(header_msg, "32FC1", depth_image));
+            sensor_msgs::ImagePtr depth_image_msg = cv_ptr->toImageMsg();
+
+            // publish depth image
+            depth_image_msg->header.stamp = header_msg.stamp;
+            depth_image_msg->header.frame_id = output_frame_id_;
+            if (pub_depth_.getNumSubscribers() > 0)
+            {
+                pub_depth_.publish(depth_image_msg);
+            }
+        
+            // // publish pointcloud
+            // pointcloud_msg.header.stamp = header_msg.stamp;
+            // pointcloud_msg.header.frame_id = output_frame_id_;
+
+            // if (pub_pointcloud_.getNumSubscribers() > 0)
+            // {
+            //     pub_pointcloud_.publish(depth_image_msg);
+            // }
         }
     }
 
 } // namespace t265_depth
+
+
+

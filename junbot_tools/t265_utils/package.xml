@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>t265_depth</name>
+  <name>t265_utils</name>
   <version>0.0.1</version>
-  <description> t265 depth from stereo </description>
+  <description> t265 utils </description>
   <maintainer email="pol@pol.com">pol</maintainer>
   <license>TODO</license>
 
