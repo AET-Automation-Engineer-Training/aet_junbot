@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 2.4)
 
 project(junbot_camera)
 
-set(CMAKE_LIBRARY_PATH /usr/local/cuda/lib64/stubs ${CMAKE_LIBRARY_PATH})
 set(CUDA_NVCC_FLAGS "${CUDA_NVCC_FLAGS} -std=c++14")
+set(CUDA_TOOLKIT_ROOT_DIR "/usr/local/cuda")
 
 if(COMMAND cmake_policy)
 	cmake_policy(SET CMP0003 OLD)
@@ -35,9 +35,6 @@ catkin_package(
         #  DEPENDS system_lib
 )
 
-set(CUDA_TOOLKIT_ROOT_DIR "/usr/local/cuda")
-set(CUDA_NVCC_EXECUTABLE "/usr/local/cuda/bin/nvcc")
-# set(CMAKE_LIBRARY_PATH "/usr/local/cuda/lib64/stubs")
 find_package(OpenCV 4.5 REQUIRED NO_MODULE PATHS /usr/local NO_DEFAULT_PATH)
 find_package(GLUT REQUIRED)
 find_package(GLEW REQUIRED)
@@ -119,6 +116,7 @@ target_link_libraries(${PROJECT_NAME}_detector
    ${catkin_LIBRARIES}
    ${OpenCV_LIBRARIES}
    yolov5-detector
+   -lopencv_dnn
 )
 
 
