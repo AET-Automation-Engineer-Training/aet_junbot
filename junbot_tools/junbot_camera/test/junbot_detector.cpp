@@ -11,12 +11,16 @@
 #include <vector>
 #include <ros/ros.h>
 #include <sensor_msgs/Image.h>
+#include <cv_bridge/cv_bridge.h>
+#include <sensor_msgs/image_encodings.h>
+
+#define MAX_INT 1000000
 
 using namespace cv;
 
 std::string model_path = "";
 
-YoLoObjectDetection det(model);
+YoLoObjectDetection det(model_path);
 
 cv::Mat curr_depthMap;
 ros::Publisher obj_pub;
@@ -33,18 +37,19 @@ float objectDistance(cv::Rect object_rect)
     return dis;
 }
 
-void imageRightRectifiedCallback(const sensor_msgs::Image::ConstPtr& msg)
+void imageLeftRectifiedCallback(const sensor_msgs::Image::ConstPtr& msg)
 {
-  ROS_INFO("Right Rectified image received from ZED - Size: %dx%d", msg->width, msg->height);
+    ROS_INFO("Left Rectified image received from ZED - Size: %dx%d", msg->width, msg->height);
 
-  // TODO: Convert sensor_msgs::Image to cv::Mat
-  cv::Mat input_image = msg->data;
+    // TODO: Convert sensor_msgs::Image to cv::Mat
+    cv_bridge::CvImagePtr cv_ptr;
+    cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
 
-  std::vector<Detection> res;
-  det.detectObject(input_image, res);
+    cv::Mat input_image = cv_ptr->image;
 
-  int fps = 1.0/time_used.count();
-    std::string string_fps = "FPS: " + std::to_string(fps);
+    std::vector<Detection> res;
+    det.detectObject(input_image, res);
+
     bool check_obs = 0;
 
     for(auto object:res) {
@@ -83,7 +88,8 @@ void depthCallback(const sensor_msgs::Image::ConstPtr& msg)
     ROS_INFO("Center distance : %g m", depths[centerIdx]);
 
     // Convert depths to cv::Mat
-    curr_depthMap = depths;
+    cv::Mat depthMat(msg->height, msg->width, CV_32F, depths);
+    curr_depthMap = depthMat.clone();
 }
 
 int main( int argc, char** argv )
@@ -94,8 +100,8 @@ int main( int argc, char** argv )
     ros::NodeHandle n;
 
     // TODO: Recheck ZED Mini Image topic
-    ros::Subscriber subLeftRectified = n.subscribe("image", 10, imageLeftRectifiedCallback);
-    ros::Subscriber subDepth = n.subscribe("depth", 10, depthCallback);
+    ros::Subscriber subLeftRectified = n.subscribe("/camera/fisheye1/image_raw/rectified", 10, imageLeftRectifiedCallback);
+    ros::Subscriber subDepth = n.subscribe("/camera/fisheye1/image_raw/depth", 10, depthCallback);
 
     ros::spin();
 

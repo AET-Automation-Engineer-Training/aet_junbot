@@ -273,26 +273,26 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        ultrasound_1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        ultrasound_2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        ultrasound_3:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        ultrasound_4:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
+        # ultrasound_1:
+        #   Alpha: 1
+        #   Show Axes: false
+        #   Show Trail: false
+        #   Value: true
+        # ultrasound_2:
+        #   Alpha: 1
+        #   Show Axes: false
+        #   Show Trail: false
+        #   Value: true
+        # ultrasound_3:
+        #   Alpha: 1
+        #   Show Axes: false
+        #   Show Trail: false
+        #   Value: true
+        # ultrasound_4:
+        #   Alpha: 1
+        #   Show Axes: false
+        #   Show Trail: false
+        #   Value: true
         wheel_1:
           Alpha: 1
           Show Axes: false
