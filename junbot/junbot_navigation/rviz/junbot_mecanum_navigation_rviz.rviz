@@ -471,7 +471,7 @@ Visualization Manager:
       Value: true
     - Class: rviz/Marker
       Enabled: true
-      Marker Topic: /zm_safety_node/slow_range_marker
+      Marker Topic: /junbot_safety_node/slow_range_marker
       Name: Marker
       Namespaces:
         {}
@@ -479,7 +479,7 @@ Visualization Manager:
       Value: true
     - Class: rviz/Marker
       Enabled: true
-      Marker Topic: /zm_safety_node/stop_range_marker
+      Marker Topic: /junbot_safety_node/stop_range_marker
       Name: Marker
       Namespaces:
         {}

@@ -72,8 +72,8 @@ gazebo_mecanum_plugins is Gazebo plugins for mecanum driving.
         <publishOdom>false</publishOdom>
         <isRollerModel>true</isRollerModel>
         <dt>0.05</dt>
-        <WheelInputVelTopic>zm_input_vel</WheelInputVelTopic>
-        <WheelOutputVelTopic>zm_output_vel</WheelOutputVelTopic>
+        <WheelInputVelTopic>junbot_input_vel</WheelInputVelTopic>
+        <WheelOutputVelTopic>junbot_output_vel</WheelOutputVelTopic>
         <WheelPID>gazebo_mecanum_plugins_PID</WheelPID>
       </plugin>
 </gazebo>
@@ -101,4 +101,4 @@ $ rosrun rqt_gui rqt_gui
 
 This repository is for your reference only. copying, patent application, academic journals are strictly prohibited.
 
-Copyright © 2021 ZM Robotics Software Laboratory.
+Copyright © 2021 junbot Robotics Software Laboratory.

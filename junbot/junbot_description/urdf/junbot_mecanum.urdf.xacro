@@ -225,169 +225,169 @@
     </inertial>
   </link>
 
-  <!--zm robot LR wheel-->
-  <xacro:zm_wheel_v1 prefix="1" parent="base_link" origin_x="${wheel_after_L}" origin_y="${wheel_left_W}" rotation_x="${wheel_rotationx}">
-  </xacro:zm_wheel_v1>
+  <!--junbot robot LR wheel-->
+  <xacro:junbot_wheel_v1 prefix="1" parent="base_link" origin_x="${wheel_after_L}" origin_y="${wheel_left_W}" rotation_x="${wheel_rotationx}">
+  </xacro:junbot_wheel_v1>
 
-  <!--zm robot LR rollor-->
-  <xacro:zm_roller_v0 prefix="roller_1_1" parent="wheel_1" origin_x="${roller_1_y}" origin_y="${roller_1_x}"
+  <!--junbot robot LR rollor-->
+  <xacro:junbot_roller_v0 prefix="roller_1_1" parent="wheel_1" origin_x="${roller_1_y}" origin_y="${roller_1_x}"
                                                            rotation_x="0.7854" rotation_z="1.5708">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_1_2" parent="wheel_1" origin_x="${roller_2_y}" origin_y="${roller_2_x}"
+  <xacro:junbot_roller_v0 prefix="roller_1_2" parent="wheel_1" origin_x="${roller_2_y}" origin_y="${roller_2_x}"
                                                            rotation_x="0.7854" rotation_z="0.8727">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_1_3" parent="wheel_1" origin_x="${roller_3_y}" origin_y="${roller_3_x}"
+  <xacro:junbot_roller_v0 prefix="roller_1_3" parent="wheel_1" origin_x="${roller_3_y}" origin_y="${roller_3_x}"
                                                            rotation_x="0.7854" rotation_z="0.1746">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_1_4" parent="wheel_1" origin_x="${roller_4_y}" origin_y="${roller_4_x}"
+  <xacro:junbot_roller_v0 prefix="roller_1_4" parent="wheel_1" origin_x="${roller_4_y}" origin_y="${roller_4_x}"
                                                            rotation_x="0.7854" rotation_z="-0.5235">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_1_5" parent="wheel_1" origin_x="${roller_5_y}" origin_y="${roller_5_x}"
+  <xacro:junbot_roller_v0 prefix="roller_1_5" parent="wheel_1" origin_x="${roller_5_y}" origin_y="${roller_5_x}"
                                                            rotation_x="0.7854" rotation_z="-1.2216">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_1_6" parent="wheel_1" origin_x="${roller_6_y}" origin_y="${roller_6_x}"
+  <xacro:junbot_roller_v0 prefix="roller_1_6" parent="wheel_1" origin_x="${roller_6_y}" origin_y="${roller_6_x}"
                                                            rotation_x="0.7854" rotation_z="4.3632">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_1_7" parent="wheel_1" origin_x="${roller_7_y}" origin_y="${roller_7_x}"
+  <xacro:junbot_roller_v0 prefix="roller_1_7" parent="wheel_1" origin_x="${roller_7_y}" origin_y="${roller_7_x}"
                                                            rotation_x="0.7854" rotation_z="3.6651">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_1_8" parent="wheel_1" origin_x="${roller_8_y}" origin_y="${roller_8_x}"
+  <xacro:junbot_roller_v0 prefix="roller_1_8" parent="wheel_1" origin_x="${roller_8_y}" origin_y="${roller_8_x}"
                                                            rotation_x="0.7854" rotation_z="2.967">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_1_9" parent="wheel_1" origin_x="${roller_9_y}" origin_y="${roller_9_x}"
+  <xacro:junbot_roller_v0 prefix="roller_1_9" parent="wheel_1" origin_x="${roller_9_y}" origin_y="${roller_9_x}"
                                                            rotation_x="0.7854" rotation_z="2.2689">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <!--zm robot LF wheel-->
-  <xacro:zm_wheel_v2 prefix="2" parent="base_link" origin_x="${wheel_before_L}" origin_y="${wheel_left_W}" rotation_x="${wheel_rotationx}">
-  </xacro:zm_wheel_v2>
+  <!--junbot robot LF wheel-->
+  <xacro:junbot_wheel_v2 prefix="2" parent="base_link" origin_x="${wheel_before_L}" origin_y="${wheel_left_W}" rotation_x="${wheel_rotationx}">
+  </xacro:junbot_wheel_v2>
 
-  <!--zm robot LF rollor-->
-  <xacro:zm_roller_v0 prefix="roller_2_1" parent="wheel_2" origin_x="${roller_1_x}" origin_y="${roller_1_y}"
+  <!--junbot robot LF rollor-->
+  <xacro:junbot_roller_v0 prefix="roller_2_1" parent="wheel_2" origin_x="${roller_1_x}" origin_y="${roller_1_y}"
                                                            rotation_x="-0.7854" rotation_z="0">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_2_2" parent="wheel_2" origin_x="${roller_2_x}" origin_y="${roller_2_y}"
+  <xacro:junbot_roller_v0 prefix="roller_2_2" parent="wheel_2" origin_x="${roller_2_x}" origin_y="${roller_2_y}"
                                                            rotation_x="-0.7854" rotation_z="0.6981">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_2_3" parent="wheel_2" origin_x="${roller_3_x}" origin_y="${roller_3_y}"
+  <xacro:junbot_roller_v0 prefix="roller_2_3" parent="wheel_2" origin_x="${roller_3_x}" origin_y="${roller_3_y}"
                                                            rotation_x="-0.7854" rotation_z="1.3962">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_2_4" parent="wheel_2" origin_x="${roller_4_x}" origin_y="${roller_4_y}"
+  <xacro:junbot_roller_v0 prefix="roller_2_4" parent="wheel_2" origin_x="${roller_4_x}" origin_y="${roller_4_y}"
                                                            rotation_x="-0.7854" rotation_z="2.0943">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_2_5" parent="wheel_2" origin_x="${roller_5_x}" origin_y="${roller_5_y}"
+  <xacro:junbot_roller_v0 prefix="roller_2_5" parent="wheel_2" origin_x="${roller_5_x}" origin_y="${roller_5_y}"
                                                            rotation_x="-0.7854" rotation_z="2.7924">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_2_6" parent="wheel_2" origin_x="${roller_6_x}" origin_y="${roller_6_y}"
+  <xacro:junbot_roller_v0 prefix="roller_2_6" parent="wheel_2" origin_x="${roller_6_x}" origin_y="${roller_6_y}"
                                                            rotation_x="-0.7854" rotation_z="-2.7924">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_2_7" parent="wheel_2" origin_x="${roller_7_x}" origin_y="${roller_7_y}"
+  <xacro:junbot_roller_v0 prefix="roller_2_7" parent="wheel_2" origin_x="${roller_7_x}" origin_y="${roller_7_y}"
                                                            rotation_x="-0.7854" rotation_z="-2.0943">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_2_8" parent="wheel_2" origin_x="${roller_8_x}" origin_y="${roller_8_y}"
+  <xacro:junbot_roller_v0 prefix="roller_2_8" parent="wheel_2" origin_x="${roller_8_x}" origin_y="${roller_8_y}"
                                                            rotation_x="-0.7854" rotation_z="-1.3962">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_2_9" parent="wheel_2" origin_x="${roller_9_x}" origin_y="${roller_9_y}"
+  <xacro:junbot_roller_v0 prefix="roller_2_9" parent="wheel_2" origin_x="${roller_9_x}" origin_y="${roller_9_y}"
                                                            rotation_x="-0.7854" rotation_z="-0.6981">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <!--zm robot RF wheel-->
-  <xacro:zm_wheel_v3 prefix="3" parent="base_link" origin_x="${wheel_before_L}" origin_y="${wheel_right_W}" rotation_x="${wheel_rotationx}">
-  </xacro:zm_wheel_v3>
+  <!--junbot robot RF wheel-->
+  <xacro:junbot_wheel_v3 prefix="3" parent="base_link" origin_x="${wheel_before_L}" origin_y="${wheel_right_W}" rotation_x="${wheel_rotationx}">
+  </xacro:junbot_wheel_v3>
 
-  <!--zm robot RF rollor-->
-  <xacro:zm_roller_v0 prefix="roller_3_1" parent="wheel_3" origin_x="${roller_1_y}" origin_y="${roller_1_x}"
+  <!--junbot robot RF rollor-->
+  <xacro:junbot_roller_v0 prefix="roller_3_1" parent="wheel_3" origin_x="${roller_1_y}" origin_y="${roller_1_x}"
                                                            rotation_x="0.7854" rotation_z="1.5708">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_3_2" parent="wheel_3" origin_x="${roller_2_y}" origin_y="${roller_2_x}"
+  <xacro:junbot_roller_v0 prefix="roller_3_2" parent="wheel_3" origin_x="${roller_2_y}" origin_y="${roller_2_x}"
                                                            rotation_x="0.7854" rotation_z="0.8727">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_3_3" parent="wheel_3" origin_x="${roller_3_y}" origin_y="${roller_3_x}"
+  <xacro:junbot_roller_v0 prefix="roller_3_3" parent="wheel_3" origin_x="${roller_3_y}" origin_y="${roller_3_x}"
                                                            rotation_x="0.7854" rotation_z="0.1746">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_3_4" parent="wheel_3" origin_x="${roller_4_y}" origin_y="${roller_4_x}"
+  <xacro:junbot_roller_v0 prefix="roller_3_4" parent="wheel_3" origin_x="${roller_4_y}" origin_y="${roller_4_x}"
                                                            rotation_x="0.7854" rotation_z="-0.5235">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_3_5" parent="wheel_3" origin_x="${roller_5_y}" origin_y="${roller_5_x}"
+  <xacro:junbot_roller_v0 prefix="roller_3_5" parent="wheel_3" origin_x="${roller_5_y}" origin_y="${roller_5_x}"
                                                            rotation_x="0.7854" rotation_z="-1.2216">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_3_6" parent="wheel_3" origin_x="${roller_6_y}" origin_y="${roller_6_x}"
+  <xacro:junbot_roller_v0 prefix="roller_3_6" parent="wheel_3" origin_x="${roller_6_y}" origin_y="${roller_6_x}"
                                                            rotation_x="0.7854" rotation_z="4.3632">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_3_7" parent="wheel_3" origin_x="${roller_7_y}" origin_y="${roller_7_x}"
+  <xacro:junbot_roller_v0 prefix="roller_3_7" parent="wheel_3" origin_x="${roller_7_y}" origin_y="${roller_7_x}"
                                                            rotation_x="0.7854" rotation_z="3.6651">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_3_8" parent="wheel_3" origin_x="${roller_8_y}" origin_y="${roller_8_x}"
+  <xacro:junbot_roller_v0 prefix="roller_3_8" parent="wheel_3" origin_x="${roller_8_y}" origin_y="${roller_8_x}"
                                                            rotation_x="0.7854" rotation_z="2.967">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_3_9" parent="wheel_3" origin_x="${roller_9_y}" origin_y="${roller_9_x}"
+  <xacro:junbot_roller_v0 prefix="roller_3_9" parent="wheel_3" origin_x="${roller_9_y}" origin_y="${roller_9_x}"
                                                            rotation_x="0.7854" rotation_z="2.2689">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <!--zm robot RR wheel-->
-  <xacro:zm_wheel_v4 prefix="4" parent="base_link" origin_x="${wheel_after_L}" origin_y="${wheel_right_W}" rotation_x="${wheel_rotationx}">
-  </xacro:zm_wheel_v4>
+  <!--junbot robot RR wheel-->
+  <xacro:junbot_wheel_v4 prefix="4" parent="base_link" origin_x="${wheel_after_L}" origin_y="${wheel_right_W}" rotation_x="${wheel_rotationx}">
+  </xacro:junbot_wheel_v4>
 
-  <!--zm robot RR rollor-->
-  <xacro:zm_roller_v0 prefix="roller_4_1" parent="wheel_4" origin_x="${roller_1_x}" origin_y="${roller_1_y}"
+  <!--junbot robot RR rollor-->
+  <xacro:junbot_roller_v0 prefix="roller_4_1" parent="wheel_4" origin_x="${roller_1_x}" origin_y="${roller_1_y}"
                                                            rotation_x="-0.7854" rotation_z="0">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_4_2" parent="wheel_4" origin_x="${roller_2_x}" origin_y="${roller_2_y}"
+  <xacro:junbot_roller_v0 prefix="roller_4_2" parent="wheel_4" origin_x="${roller_2_x}" origin_y="${roller_2_y}"
                                                            rotation_x="-0.7854" rotation_z="0.6981">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_4_3" parent="wheel_4" origin_x="${roller_3_x}" origin_y="${roller_3_y}"
+  <xacro:junbot_roller_v0 prefix="roller_4_3" parent="wheel_4" origin_x="${roller_3_x}" origin_y="${roller_3_y}"
                                                            rotation_x="-0.7854" rotation_z="1.3962">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_4_4" parent="wheel_4" origin_x="${roller_4_x}" origin_y="${roller_4_y}"
+  <xacro:junbot_roller_v0 prefix="roller_4_4" parent="wheel_4" origin_x="${roller_4_x}" origin_y="${roller_4_y}"
                                                            rotation_x="-0.7854" rotation_z="2.0943">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_4_5" parent="wheel_4" origin_x="${roller_5_x}" origin_y="${roller_5_y}"
+  <xacro:junbot_roller_v0 prefix="roller_4_5" parent="wheel_4" origin_x="${roller_5_x}" origin_y="${roller_5_y}"
                                                            rotation_x="-0.7854" rotation_z="2.7924">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_4_6" parent="wheel_4" origin_x="${roller_6_x}" origin_y="${roller_6_y}"
+  <xacro:junbot_roller_v0 prefix="roller_4_6" parent="wheel_4" origin_x="${roller_6_x}" origin_y="${roller_6_y}"
                                                            rotation_x="-0.7854" rotation_z="-2.7924">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_4_7" parent="wheel_4" origin_x="${roller_7_x}" origin_y="${roller_7_y}"
+  <xacro:junbot_roller_v0 prefix="roller_4_7" parent="wheel_4" origin_x="${roller_7_x}" origin_y="${roller_7_y}"
                                                            rotation_x="-0.7854" rotation_z="-2.0943">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_4_8" parent="wheel_4" origin_x="${roller_8_x}" origin_y="${roller_8_y}"
+  <xacro:junbot_roller_v0 prefix="roller_4_8" parent="wheel_4" origin_x="${roller_8_x}" origin_y="${roller_8_y}"
                                                            rotation_x="-0.7854" rotation_z="-1.3962">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
-  <xacro:zm_roller_v0 prefix="roller_4_9" parent="wheel_4" origin_x="${roller_9_x}" origin_y="${roller_9_y}"
+  <xacro:junbot_roller_v0 prefix="roller_4_9" parent="wheel_4" origin_x="${roller_9_x}" origin_y="${roller_9_y}"
                                                            rotation_x="-0.7854" rotation_z="-0.6981">
-  </xacro:zm_roller_v0>
+  </xacro:junbot_roller_v0>
 
   <!-- Wheel -->
   <xacro:wheel_gazebo_v0 prefix="1"/>
@@ -478,19 +478,19 @@
   <xacro:roller_trans_v0 prefix="roller_4_9"/>
 
   <!-- ultrasound
-  <xacro:zm_ultrasound prefix="1" parent="base_link" origin_x="${ul_left_front_x}" origin_y="${ul_left_front_y}" 
+  <xacro:junbot_ultrasound prefix="1" parent="base_link" origin_x="${ul_left_front_x}" origin_y="${ul_left_front_y}" 
                                                      origin_z="${ul_hight}" rotation_z="${ul_front_rotation}">
-  </xacro:zm_ultrasound>
+  </xacro:junbot_ultrasound>
 
-  <xacro:zm_ultrasound prefix="2" parent="base_link" origin_x="${ul_right_front_x}" origin_y="${ul_right_front_y}" 
+  <xacro:junbot_ultrasound prefix="2" parent="base_link" origin_x="${ul_right_front_x}" origin_y="${ul_right_front_y}" 
                                                      origin_z="${ul_hight}" rotation_z="${ul_front_rotation}">
-  </xacro:zm_ultrasound>
+  </xacro:junbot_ultrasound>
 
-  <xacro:zm_ultrasound prefix="3" parent="base_link" origin_x="${ul_left_rear_x}" origin_y="${ul_left_rear_y}" 
+  <xacro:junbot_ultrasound prefix="3" parent="base_link" origin_x="${ul_left_rear_x}" origin_y="${ul_left_rear_y}" 
                                                      origin_z="${ul_hight}" rotation_z="${ul_rear_rotation}">
-  </xacro:zm_ultrasound>
+  </xacro:junbot_ultrasound>
 
-  <xacro:zm_ultrasound prefix="4" parent="base_link" origin_x="${ul_right_rear_x}" origin_y="${ul_right_rear_y}" 
+  <xacro:junbot_ultrasound prefix="4" parent="base_link" origin_x="${ul_right_rear_x}" origin_y="${ul_right_rear_y}" 
                                                      origin_z="${ul_hight}" rotation_z="${ul_rear_rotation}">
-  </xacro:zm_ultrasound> -->
+  </xacro:junbot_ultrasound> -->
 </robot>

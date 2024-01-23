@@ -3,7 +3,7 @@
 
   <xacro:include filename="$(find junbot_description)/urdf/junbot_ultrasound.gazebo"/>
   
-  <xacro:macro name="zm_ultrasound" params="prefix parent origin_x origin_y origin_z rotation_z">
+  <xacro:macro name="junbot_ultrasound" params="prefix parent origin_x origin_y origin_z rotation_z">
 	<joint name="ultrasound_joint_${prefix}" type="fixed">
 	  <parent link="${parent}"/>
 	  <child link="ultrasound_${prefix}"/>

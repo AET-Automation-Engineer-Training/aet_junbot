@@ -4,7 +4,7 @@
   <xacro:include filename="$(find junbot_description)/urdf/junbot_roller.transmission.xacro"/>
   <xacro:include filename="$(find junbot_description)/urdf/junbot_roller.gazebo"/>
   
-  <xacro:macro name="zm_roller_v0" params="prefix parent origin_x origin_y rotation_x rotation_z">
+  <xacro:macro name="junbot_roller_v0" params="prefix parent origin_x origin_y rotation_x rotation_z">
 	<joint name="${prefix}_joint" type="continuous">
 	  <parent link="${parent}"/>
 	  <child link="${prefix}"/>
