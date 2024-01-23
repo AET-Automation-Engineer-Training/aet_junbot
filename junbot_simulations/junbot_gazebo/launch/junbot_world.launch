@@ -22,10 +22,10 @@
 
   <!-- Load the URDF into the ROS Parameter Server -->
   <param name="robot_description"
-    command="$(find xacro)/xacro --inorder '$(find zm_robot_description)/urdf/zm_robot.urdf.xacro'" />
+    command="$(find xacro)/xacro --inorder '$(find junbot_description)/urdf/junbot.urdf.xacro'" />
 
   <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
-  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" args="-urdf -model zm_robot -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description"/>
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" args="-urdf -model junbot -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description"/>
 
   <!-- send fake joint values -->
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>

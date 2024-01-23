@@ -3,7 +3,7 @@
 
   <xacro:include filename="$(find junbot_description)/urdf/junbot_wheel.gazebo"/>
   
-  <xacro:macro name="zm_wheel_v3" params="prefix parent origin_x origin_y rotation_x">
+  <xacro:macro name="junbot_wheel_v3" params="prefix parent origin_x origin_y rotation_x">
 	<joint name="wheel_joint_${prefix}" type="continuous">
 	  <parent link="${parent}"/>
 	  <child link="wheel_${prefix}"/>

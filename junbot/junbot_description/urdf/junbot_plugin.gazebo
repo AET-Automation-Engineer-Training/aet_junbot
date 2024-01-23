@@ -48,7 +48,7 @@
     <material>Gazebo/Yellow</material>
   </gazebo>
 
-  <!-- sick LiDAR 1 -->
+  <!-- sick LiDAR 1
   <gazebo reference="sick_lidar1">
     <selfCollide>false</selfCollide> 
     <gravity>true</gravity>
@@ -57,7 +57,7 @@
     <kp>1e60</kp>
     <kd>1e50</kd>
     <material>Gazebo/Yellow</material>
-  </gazebo>
+  </gazebo> -->
 
   <!-- Kinect V2 -->
   <gazebo reference="kinect_v2">
@@ -108,7 +108,7 @@
   </gazebo>
 
   <!-- sick LiDAR 1 controller -->
-  <gazebo reference="sick_lidar1">
+  <!-- <gazebo reference="sick_lidar1">
     <sensor type="ray" name="sick_LiDAR1_sensor">
       <pose>0 0 0 0 0 0</pose>
       <visualize>false</visualize>
@@ -128,12 +128,12 @@
           <resolution>0.01</resolution>
         </range>
         <noise>
-          <type>gaussian</type>
+          <type>gaussian</type> -->
           <!-- Noise parameters based on published spec for Hokuyo laser
                achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
                stddev of 0.01m will put 99.7% of samples within 0.03m of the true
                reading. -->
-          <mean>0.0</mean>
+          <!-- <mean>0.0</mean>
           <stddev>0.01</stddev>
         </noise>
       </ray>
@@ -142,7 +142,7 @@
         <frameName>sick_lidar1</frameName>
       </plugin>
     </sensor>
-  </gazebo>
+  </gazebo> -->
 
   <!-- kinect v2 controller -->
   <gazebo reference="kinect_v2">
@@ -210,7 +210,7 @@
   </gazebo>
 
   <!-- ultrasound sensor controller -->
-  <gazebo reference="ultrasound_1">        
+  <!-- <gazebo reference="ultrasound_1">        
    <sensor type="ray" name="TeraRanger">
       <pose>0 0 0 0 0 0</pose>
       <visualize>true</visualize>
@@ -360,5 +360,5 @@
          <fov>0.5</fov>
       </plugin>
    </sensor>  
-   </gazebo>
+   </gazebo> -->
 </robot>
