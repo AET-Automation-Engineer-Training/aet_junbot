@@ -9,7 +9,7 @@
 
   <!-- <include file="$(find zed_wrapper)/launch/zedm.launch"/> -->
 
-  <!-- <include file="$(find junbot_bringup)/launch/sick_tim_781.launch"/> -->
+  <include file="$(find junbot_bringup)/launch/rplidar_a2m8.launch" />
 
   <node pkg="junbot_bringup" type="junbot_diagnostics" name="junbot_diagnostics" output="screen"/>
 
