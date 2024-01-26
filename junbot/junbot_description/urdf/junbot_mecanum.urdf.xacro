@@ -160,25 +160,25 @@
   </link> -->
 
   <!-- kinect V2 -->
-  <joint name="kinect_v2_joint " type="fixed">
+  <joint name="t265_joint " type="fixed">
     <parent link="base_link"/>
-    <child link="kinect_v2"/>
+    <child link="t265"/>
     <origin xyz="0.33 0 0.122015" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
-  <link name="kinect_v2">
+  <link name="t265">
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-	      <mesh filename="package://junbot_description/meshes/kinect_v2.stl" scale="0.01 0.01 0.01"/>
+	      <mesh filename="package://junbot_description/meshes/t265.stl" scale="0.01 0.01 0.01"/>
       </geometry>
     </collision>
 
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-	      <mesh filename="package://junbot_description/meshes/kinect_v2.stl" scale="0.01 0.01 0.01"/>
+	      <mesh filename="package://junbot_description/meshes/t265.stl" scale="0.01 0.01 0.01"/>
       </geometry>
       <material name="black"/>
     </visual>
