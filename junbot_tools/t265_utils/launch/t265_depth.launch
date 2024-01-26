@@ -1,15 +1,15 @@
 <launch>
-    <arg name="input_topic_left" default="/camera/fisheye1/image_raw" />
-    <arg name="input_topic_right" default="/camera/fisheye2/image_raw" />
+    <arg name="input_topic_left" default="/t265/fisheye1/image_raw" />
+    <arg name="input_topic_right" default="/t265/fisheye2/image_raw" />
 
     <arg name="output_frame_id" default="t265_depth" />
     <arg name="process_every_nth_frame" default="1" />
     
-    <arg name="param_file_path" default="$(find t265_depth)/cfg/full_res.yaml" />
+    <arg name="param_file_path" default="$(find t265_utils)/cfg/full_res.yaml" />
     <arg name="scale" default="1.0" /> # 1, 0.5 or 0.33
 
 
-    <node name="t265_depth" type="t265_depth" pkg="t265_depth" output="screen">
+    <node name="t265_depth" type="t265_utils" pkg="t265_utils" output="screen">
         <param name="input_topic_left" value="$(arg input_topic_left)" />
         <param name="input_topic_right" value="$(arg input_topic_right)" />
         <param name="output_frame_id" value="$(arg output_frame_id)" />
