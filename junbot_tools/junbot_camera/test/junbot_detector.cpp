@@ -39,7 +39,7 @@ float objectDistance(cv::Rect object_rect)
 
 void imageLeftRectifiedCallback(const sensor_msgs::Image::ConstPtr& msg)
 {
-    ROS_INFO("Left Rectified image received from ZED - Size: %dx%d", msg->width, msg->height);
+    ROS_INFO("Left Rectified image received from T265 - Size: %dx%d", msg->width, msg->height);
 
     // TODO: Convert sensor_msgs::Image to cv::Mat
     cv_bridge::CvImagePtr cv_ptr;
