@@ -18,7 +18,7 @@
 
 using namespace cv;
 
-std::string model_path = "";
+std::string model_path = "/home/aet/aet_ws/src/aet_junbot/junbot_tools/junbot_camera/Model/yolov5s.engine";
 
 YoLoObjectDetection det(model_path);
 
@@ -100,8 +100,8 @@ int main( int argc, char** argv )
     ros::NodeHandle n;
 
     // TODO: Recheck ZED Mini Image topic
-    ros::Subscriber subLeftRectified = n.subscribe("/camera/fisheye1/image_raw/rectified", 10, imageLeftRectifiedCallback);
-    ros::Subscriber subDepth = n.subscribe("/camera/fisheye1/image_raw/depth", 10, depthCallback);
+    ros::Subscriber subLeftRectified = n.subscribe("/t265/fisheye1/image_raw/rectified", 10, imageLeftRectifiedCallback);
+    ros::Subscriber subDepth = n.subscribe("/t265/fisheye1/image_raw/depth", 10, depthCallback);
 
     ros::spin();
 
