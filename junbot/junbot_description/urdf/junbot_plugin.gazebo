@@ -38,7 +38,7 @@
 
 
   <!-- sick LiDAR 0 -->
-  <gazebo reference="sick_lidar0">
+  <gazebo reference="laser">
     <selfCollide>false</selfCollide>
     <gravity>true</gravity>
     <mu1>30</mu1>
@@ -71,8 +71,8 @@
   </gazebo>
 
   <!-- sick LiDAR 0 controller -->
-  <gazebo reference="sick_lidar0">
-    <sensor type="ray" name="sick_LiDAR0_sensor">
+  <gazebo reference="laser">
+    <sensor type="ray" name="laser_sensor">
       <pose>0 0 0 0 0 0</pose>
       <visualize>false</visualize>
       <update_rate>40</update_rate>
@@ -101,8 +101,8 @@
         </noise>
       </ray>
       <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
-        <topicName>/sick_s30b/laser/scan0</topicName>
-        <frameName>sick_lidar0</frameName>
+        <topicName>/scan</topicName>
+        <frameName>laser</frameName>
       </plugin>
     </sensor>
   </gazebo>
