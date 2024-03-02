@@ -364,26 +364,20 @@ namespace t265_depth
                 pub_disparity_.publish(out_disparity_msg);
             }
 
-            // build pointcloud
-            sensor_msgs::PointCloud2 pointcloud_msg;
-            computePointcloud(left_disp, pointcloud_msg);
-
-            // Convert pointcloud to depth image
+            // Convert disparity image to depth image
             cv::Mat depth_image = cv::Mat::zeros(undist_image_left_.rows, undist_image_left_.cols, CV_32FC1);
-            sensor_msgs::PointCloud2Iterator<float> iter_z(pointcloud_msg, "z");
             for (int y = 0; y < depth_image.rows; ++y)
             {
                 for (int x = 0; x < depth_image.cols; ++x)
                 {
-                    depth_image.at<float>(y, x) = *iter_z;
-                    ++iter_z;
+                    depth_image.at<float>(y, x) = left_disp.at<int16_t>(y, x);
                 }
             }
+
             // Convert depth image to std_msgs::Image
             cv_bridge::CvImagePtr cv_ptr(new cv_bridge::CvImage);
             cv_ptr->image = depth_image;
             cv_ptr->encoding = "32FC1";
-            // cv_ptr = cv_bridge::toCvCopy(cv_bridge::CvImage(header_msg, "32FC1", depth_image));
             sensor_msgs::ImagePtr depth_image_msg = cv_ptr->toImageMsg();
 
             // publish depth image
@@ -393,6 +387,10 @@ namespace t265_depth
             {
                 pub_depth_.publish(depth_image_msg);
             }
+
+            // build pointcloud
+            // sensor_msgs::PointCloud2 pointcloud_msg;
+            // computePointcloud(left_disp, pointcloud_msg);
         
             // // publish pointcloud
             // pointcloud_msg.header.stamp = header_msg.stamp;
