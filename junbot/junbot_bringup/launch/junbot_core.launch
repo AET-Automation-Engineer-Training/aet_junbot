@@ -1,15 +1,15 @@
 <launch>
   <arg name="multi_robot_name" default=""/>
 
-  <!-- <node pkg="rosserial_python" type="serial_node.py" name="junbot_core" output="screen">
+  <node pkg="rosserial_python" type="serial_node.py" name="junbot_core" output="screen">
     <param name="port" value="/dev/ttyACM0"/>
     <param name="baud" value="57600"/>
     <param name="tf_prefix" value="$(arg multi_robot_name)"/>
-  </node> -->
+  </node>
 
   <!-- <include file="$(find zed_wrapper)/launch/zedm.launch"/> -->
 
-  <include file="$(find junbot_bringup)/launch/rplidar_a2m8.launch" />
+  <include file="$(find junbot_bringup)/launch/rplidar_a2m12.launch" />
 
   <node pkg="junbot_bringup" type="junbot_diagnostics" name="junbot_diagnostics" output="screen"/>
 

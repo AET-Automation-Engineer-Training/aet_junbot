@@ -96,13 +96,13 @@
   </link>
 
   <!-- sick LiDAR 0 -->
-  <joint name="sick_lidar0_joint" type="fixed">
+  <joint name="scan_joint" type="fixed">
     <parent link="base_link"/>
-    <child link="sick_lidar0"/>
+    <child link="laser"/>
     <origin xyz="0.2 0 0.195722" rpy="0 0 0"/>
   </joint>
 
-  <link name="sick_lidar0">
+  <link name="laser">
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
@@ -161,13 +161,13 @@
 
   <!-- kinect V2 -->
   <joint name="t265_joint " type="fixed">
-    <parent link="base_link"/>
-    <child link="t265"/>
+    <parent link="base_footprint"/>
+    <child link="t265_link"/>
     <origin xyz="0.33 0 0.122015" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
-  <link name="t265">
+  <link name="t265_link">
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
@@ -193,7 +193,7 @@
   </link>
 
   <!-- IMU -->
-  <joint name="IMU_joint " type="fixed">
+  <!-- <joint name="IMU_joint " type="fixed">
     <parent link="base_link"/>
     <child link="IMU_sensor"/>
     <origin xyz="0 0 0.08" rpy="0 0 0"/>
@@ -223,7 +223,7 @@
 	             iyy="0.00005" iyz="0.0"
 	            izz="0.00005"/>
     </inertial>
-  </link>
+  </link> -->
 
   <!--junbot robot LR wheel-->
   <xacro:junbot_wheel_v1 prefix="1" parent="base_link" origin_x="${wheel_after_L}" origin_y="${wheel_left_W}" rotation_x="${wheel_rotationx}">

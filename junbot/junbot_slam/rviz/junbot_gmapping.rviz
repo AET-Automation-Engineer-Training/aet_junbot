@@ -263,7 +263,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        sick_lidar0:
+        laser:
           Alpha: 1
           Show Axes: false
           Show Trail: false
