@@ -1,0 +1,48 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="map_file" default="/home/gn/workspace/aet_ws/src/aet_junbot/junbot/junbot_navigation/maps/warehousex4.yaml"/>
+  <arg name="open_rviz" default="true"/>
+  <arg name="move_forward_only" default="true"/>
+
+  <arg name="cmd_vel_out" default="/junbot_cmd_vel"/>
+  <!-- <arg name="config_locks"  default="$(find junbot_twist_mux)/config/twist_mux_locks.yaml"/>
+  <arg name="config_topics" default="$(find junbot_twist_mux)/config/twist_mux_topics.yaml"/> -->
+
+  <!-- <node pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen">
+    <param name="destination_frame" value="laser"/>
+    <param name="cloud_destination_topic" value="/junbot_clound"/>
+    <param name="scan_destination_topic" value="/junbot_scan"/>
+    <param name="laserscan_topics" value ="scan" />
+    <param name="angle_min" value="-3.1415926"/>
+    <param name="angle_max" value="3.1415926"/>
+    <param name="angle_increment" value="0.0058"/>
+    <param name="scan_time" value="0.1"/>
+    <param name="range_min" value="0.3"/>
+    <param name="range_max" value="30"/>
+  </node> -->
+
+  <!-- Map server -->
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+
+  <!-- AMCL -->
+  <include file="$(find junbot_navigation)/launch/junbot_mecanum_amcl_sim.launch"/>
+
+
+  <!-- move_base -->
+  <include file="$(find junbot_navigation)/launch/junbot_mecanum_move_base_sim.launch">
+    <arg name="move_forward_only" value="$(arg move_forward_only)"/>
+  </include>
+
+  <!-- junbot_twist_mux -->
+  <!-- <node pkg="twist_mux" type="twist_mux" name="twist_mux" output="screen">
+    <remap from="cmd_vel_out" to="$(arg cmd_vel_out)"/>
+    <rosparam file="$(arg config_locks)"  command="load"/>
+    <rosparam file="$(arg config_topics)" command="load"/>
+  </node> -->
+
+  <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find junbot_navigation)/rviz/junbot_mecanum_navigation_rviz.rviz"/>
+  </group>
+</launch>

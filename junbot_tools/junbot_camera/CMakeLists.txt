@@ -109,6 +109,7 @@ target_link_libraries(yolov5-detector
         )
 
 add_executable(${PROJECT_NAME}_detector test/junbot_detector.cpp)
+add_executable(${PROJECT_NAME}_mission_control test/mission_control.cpp)
 
 target_link_libraries(${PROJECT_NAME}_detector
    ${realsense2_LIBRARY}
@@ -117,6 +118,13 @@ target_link_libraries(${PROJECT_NAME}_detector
    ${OpenCV_LIBRARIES}
    yolov5-detector
    -lopencv_dnn
+)
+target_link_libraries(${PROJECT_NAME}_mission_control
+   ${realsense2_LIBRARY}
+   ${Boost_LIBRARIES}
+   ${catkin_LIBRARIES}
+   ${OpenCV_LIBRARIES}
+   yolov5-detector
 )
 
 
@@ -128,6 +136,9 @@ install(TARGETS yolov5-detector
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
+install(TARGETS ${PROJECT_NAME}_mission_control
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 catkin_install_python(PROGRAMS scripts/set_cams_transforms.py
                       DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
