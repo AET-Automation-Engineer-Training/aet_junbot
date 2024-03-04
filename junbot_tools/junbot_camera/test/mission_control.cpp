@@ -20,6 +20,7 @@ struct pose_ {
 };
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 move_base_msgs::MoveBaseActionGoal tempGoal;
+move_base_msgs::MoveBaseGoal goal;
 ros::Publisher pub;
 bool status_mission = 0;
 int id_current;
@@ -47,17 +48,19 @@ void missionCallback(const std_msgs::String::ConstPtr &msg_mission) {
     target.at(1).w = parsedJson["target2_w"];
     target.at(0).loopTime = parsedJson["loopTime"];
     target.at(1).loopTime = parsedJson["loopTime"];
-    tempGoal.goal.target_pose.pose.position.x = target.at(0).x;
-    tempGoal.goal.target_pose.pose.position.y = target.at(0).y;
-    tempGoal.goal.target_pose.pose.orientation.w= target.at(0).w;
+    goal.target_pose.pose.position.x = target.at(0).x;
+    goal.target_pose.pose.position.y = target.at(0).y;
+    goal.target_pose.pose.orientation.w= target.at(0).w;
+    goal.target_pose.header.frame_id = "map";
+    goal.target_pose.header.stamp = ros::Time::now();
     id_current = target.at(0).ID_mission;
     status_mission = 1;
 }
 
 int main(int argc, char **argv) {
 
-    tempGoal.goal.target_pose.pose.position.x = FLT_MAX;
-    tempGoal.goal.target_pose.pose.position.y = FLT_MAX;
+    // goal.target_pose.pose.position.x = FLT_MAX;
+    // goal.target_pose.pose.position.y = FLT_MAX;
 
     ros::init(argc, argv, "mission_control");
     MoveBaseClient ac("move_base", true);
@@ -70,22 +73,22 @@ int main(int argc, char **argv) {
         if (status_mission == 1)
         {
             ROS_INFO ("target.at(0).ID_mission");
-            ac.sendGoal(tempGoal.goal);
+            ac.sendGoal(goal);
             ac.waitForResult();
             if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED){
                 if (id_current == 1)
                 {
-                    tempGoal.goal.target_pose.pose.position.x = target.at(1).x;
-                    tempGoal.goal.target_pose.pose.position.y = target.at(1).y;
-                    tempGoal.goal.target_pose.pose.orientation.w= target.at(1).w;
+                    goal.target_pose.pose.position.x = target.at(1).x;
+                    goal.target_pose.pose.position.y = target.at(1).y;
+                    goal.target_pose.pose.orientation.w= target.at(1).w;
                     id_current = target.at(1).ID_mission;
                 }
                 else if (id_current == 2)
                 {
                     countLoop++;
-                    tempGoal.goal.target_pose.pose.position.x = target.at(0).x;
-                    tempGoal.goal.target_pose.pose.position.y = target.at(0).y;
-                    tempGoal.goal.target_pose.pose.orientation.w= target.at(0).w;
+                    goal.target_pose.pose.position.x = target.at(0).x;
+                    goal.target_pose.pose.position.y = target.at(0).y;
+                    goal.target_pose.pose.orientation.w= target.at(0).w;
                     id_current = target.at(0).ID_mission;
                 }
             }
