@@ -65,6 +65,17 @@ void imageLeftRectifiedCallback(const sensor_msgs::Image::ConstPtr& msg)
         float dis = objectDistance(r);
 
         // TODO: Check distance and publish
+        if (object.class_id == 0) {
+            int count_pixel = 0;
+            for (int x = r.x; x < r.x + r.width; x++) {
+                for (int y = r.y; y < r.y + r.height; y++) {
+                    count_pixel++;
+                }
+            }
+            ROS_INFO("Number Pixel: ");
+            std::cout << count_pixel;
+        }
+        
     }
 
     cv::imshow("result", input_image);
