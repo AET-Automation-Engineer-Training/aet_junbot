@@ -25,4 +25,4 @@ local_costmap:
     - { name: inflation_layer, type: "costmap_2d::InflationLayer" }
   obstacles:
     observation_sources: scan
-    scan1: {sensor_frame: sick_lidar0, data_type: LaserScan, topic: /scan, marking: true, clearing: true}
+    scan: {sensor_frame: sick_lidar0, data_type: LaserScan, topic: /scan, marking: true, clearing: true}
