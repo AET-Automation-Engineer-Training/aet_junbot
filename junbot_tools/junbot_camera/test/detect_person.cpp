@@ -5,21 +5,23 @@
 #include <iostream>
 #include <std_msgs/String.h>
 
-vision_msgs::Detection2D msg;
-
 ros::Publisher pub_detection;
 
-void detectionCallback(const vision_msgs::Detection2D &bbox_msgs) {
-    float percent = 0;
-    msg = bbox_msgs;
-    percent = (msg.bbox.size_x*msg.bbox.size_x)/(1280*720);
-    if (percent > 0.5){
-        std_msgs::String msg;
-        std::stringstream ss;
-        ss << "warning";
-        msg.data = ss.str();
-        pub_detection.publish(msg);
+void detectionCallback(const vision_msgs::Detection2DArray &bbox_msgs) {
+    for (int i = 0; i < bbox_msgs.detections.size(); i++)
+    {
+        float percent = 0;
+        percent = (bbox_msgs.detections.at(i).bbox.size_x*bbox_msgs.detections.at(i).bbox.size_y)/(1280*720);
+        if (percent > 0.5){
+            std_msgs::String msg;
+            std::stringstream ss;
+            ss << "warning";
+            msg.data = ss.str();
+            pub_detection.publish(msg);
+        }
     }
+    
+    
 }
 
 
