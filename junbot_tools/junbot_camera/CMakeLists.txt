@@ -112,6 +112,7 @@ target_link_libraries(yolov5-detector
 add_executable(${PROJECT_NAME}_detector test/junbot_detector.cpp)
 add_executable(${PROJECT_NAME}_mission_control test/mission_control.cpp)
 add_executable(${PROJECT_NAME}_detect_person test/detect_person.cpp)
+add_executable(${PROJECT_NAME}_cancel_mission test/cancel_mission.cpp)
 
 target_link_libraries(${PROJECT_NAME}_detector
    ${realsense2_LIBRARY}
@@ -136,6 +137,13 @@ target_link_libraries(${PROJECT_NAME}_detect_person
    yolov5-detector
 )
 
+target_link_libraries(${PROJECT_NAME}_cancel_mission
+   ${realsense2_LIBRARY}
+   ${Boost_LIBRARIES}
+   ${catkin_LIBRARIES}
+   ${OpenCV_LIBRARIES}
+   yolov5-detector
+)
 
 install(TARGETS ${PROJECT_NAME}_detector
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -149,6 +157,10 @@ install(TARGETS ${PROJECT_NAME}_mission_control
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
   install(TARGETS ${PROJECT_NAME}_detect_person
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(TARGETS ${PROJECT_NAME}_cancel_mission
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
