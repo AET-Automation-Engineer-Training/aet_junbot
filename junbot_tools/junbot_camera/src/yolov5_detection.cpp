@@ -57,7 +57,7 @@ YoLoObjectDetection::~YoLoObjectDetection() {
 }
 
 void YoLoObjectDetection::infer(IExecutionContext& context, cudaStream_t& stream, void **buffers, float* output1, float* output2, int batchSize) {
-    context.enqueue(batchSize, buffers, stream, nullptr);
+    context.enqueueV2(buffers, stream, nullptr);
     CUDA_CHECK(cudaMemcpyAsync(output1, buffers[1], batchSize * kOutputSize1 * sizeof(float), cudaMemcpyDeviceToHost, stream));
     CUDA_CHECK(cudaMemcpyAsync(output2, buffers[2], batchSize * kOutputSize2 * sizeof(float), cudaMemcpyDeviceToHost, stream));
     cudaStreamSynchronize(stream);
