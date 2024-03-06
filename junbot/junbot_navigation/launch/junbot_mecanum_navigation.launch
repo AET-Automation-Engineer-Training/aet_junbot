@@ -1,6 +1,6 @@
 <launch>
   <!-- Arguments -->
-  <arg name="map_file" default="/home/aet/aet_ws/src/aet_junbot/junbot/junbot_navigation/maps/warehouse.yaml"/>
+  <arg name="map_file" default="/home/aet/floor.yaml"/>
   <arg name="open_rviz" default="true"/>
   <arg name="move_forward_only" default="true"/>
 
