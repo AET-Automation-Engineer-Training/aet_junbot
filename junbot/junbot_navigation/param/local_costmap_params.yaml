@@ -6,7 +6,7 @@ local_costmap:
   publish_frequency: 10.0
   transform_tolerance: 1
 
-  static_map: false  
+  static_map: true  
   rolling_window: true
   width: 3
   height: 3
@@ -25,4 +25,4 @@ local_costmap:
     - { name: inflation_layer, type: "costmap_2d::InflationLayer" }
   obstacles:
     observation_sources: scan
-    scan: {sensor_frame: sick_lidar0, data_type: LaserScan, topic: /scan, marking: true, clearing: true}
+    scan: {sensor_frame: laser, data_type: LaserScan, topic: /scan, marking: true, clearing: true}
