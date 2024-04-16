@@ -26,6 +26,7 @@ bool status_mission = 0;
 int id_current;
 int countLoop = 0;
 std::vector<pose_> target;
+geometry_msgs::PoseWithCovariance amcl_pose;
 
 
 void missionCallback(const std_msgs::String::ConstPtr &msg_mission) {
@@ -58,6 +59,11 @@ void missionCallback(const std_msgs::String::ConstPtr &msg_mission) {
     status_mission = 1;
 }
 
+void poseAMCLCallback(const geometry_msgs::PoseWithCovarianceStamped::ConstPtr& msg_amcl)
+{
+    amcl_pose = msg_amcl->pose;
+}
+
 
 int main(int argc, char **argv) {
 
@@ -71,15 +77,32 @@ int main(int argc, char **argv) {
     ros::Subscriber sub_mission = n.subscribe("/robot_target_id", 1000, missionCallback);
     ros::Publisher pub_mission = n.advertise<std_msgs::String>("/goal_arrived", 1000); 
     cancel = n.advertise<actionlib_msgs::GoalID>("/move_base/cancel", 1000);
-
+    ros::Subscriber sub_amcl = n.subscribe("/amcl_pose", 1000, poseAMCLCallback);
+    std::string flag = "move";
     while (ros::ok()) 
     {
         if (status_mission == 1)
         {
-            // ROS_INFO ("target.at(0).ID_mission");
-            ac.sendGoal(goal);
-            ac.waitForResult();
-            if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED){
+            ROS_INFO("flag: %s", flag.c_str());
+            if (flag == "move"){
+                ac.sendGoal(goal);
+                ROS_INFO("Send goal");
+                flag = "moving";
+            }
+            double distance;
+            distance = sqrt(pow(amcl_pose.pose.position.x - goal.target_pose.pose.position.x, 2) + pow(amcl_pose.pose.position.y - goal.target_pose.pose.position.y, 2));
+            ROS_INFO("distance: %f", distance);
+            if (distance <= 0.35)
+            {
+                actionlib_msgs::GoalID tempCancel;
+                tempCancel.stamp = {};
+                tempCancel.id = {};
+                cancel.publish(tempCancel);
+                ROS_INFO("Cancel goal");
+                flag = "done";
+            }
+
+            if(flag == "done"){
                 if (id_current == 1)
                 {
                     goal.target_pose.pose.position.x = target.at(1).x;
@@ -95,6 +118,8 @@ int main(int argc, char **argv) {
                     goal.target_pose.pose.orientation.w= target.at(0).w;
                     id_current = target.at(0).ID_mission;
                 }
+                flag = "move";
+                ROS_INFO("countLoop: %d", countLoop);
                 if (countLoop == target.at(0).loopTime)
                 {
                     status_mission = 0;
@@ -103,6 +128,7 @@ int main(int argc, char **argv) {
                     ss << "done";
                     msg.data = ss.str();
                     pub_mission.publish(msg);
+                    countLoop = 0;
                 }
             }
         }
